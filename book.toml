@@ -1,0 +1,6 @@
+[book]
+authors = ["Tom Ruisseau"]
+language = "en"
+multilingual = false
+src = "src"
+title = "ISGT Wiki"
