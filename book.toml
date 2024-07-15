@@ -4,3 +4,8 @@ language = "en"
 multilingual = false
 src = "src"
 title = "ISGT Wiki"
+
+[output.html]
+smart-punctuation = true
+git-repository-url = "https://github.com/numediart/ISGT"
+git-repository-icon = "fa-github"
