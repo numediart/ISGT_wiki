@@ -118,4 +118,4 @@ Each screenshot is matched with a Json containing info about the room, the seeds
 
 ISGT is fully open-source, you can fork the GitHub repository and start helping us improve the tool.
 
-You can find the complete technical documentation [here](./Doc/doc_menu.mds).
+You can find the complete technical documentation [here](./Doc/doc-menu.md).

@@ -4,7 +4,7 @@
 
 # Technical documentation
 
-[Documentation](./Doc/doc_menu.md)
+[Documentation](./Doc/doc-menu.md)
 - [Environment](./Doc/environment.md)
 - [Build](./Doc/build.md)
 - [Generation steps](./Doc/./Steps/steps_menu.md)
