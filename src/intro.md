@@ -4,9 +4,43 @@ ISGT is a Unity project aimed at generating realistic virtual rooms. They are th
 
 ## How to use 
 
-To use the software, you only need to download the latest realease, unzip it and start ISGT.exe .<br>
-You canchange the settings and the output folder via the menu, and then start the process. It can be stopped at any point by pressing escape.
-By default, screenshots and JSONs are saved at /ISGT_Data/Export/
+To use the software, you only need to download the [latest realease](https://github.com/numediart/ISGT/releases), unzip it and start ISGT.exe.
+
+You can change the settings and the output folder via the menu, and then start the process. It can be stopped at any point by pressing escape.
+
+By default, screenshots and JSONs are saved at /ISGT_Data/Export/.
+
+## Parameters
+
+The process is fully parametrable thanks to the following settings : 
+- **General settings**
+    - Number of room 
+    - Screenshots per room
+    - Image resolution : the size of the screenshots, from 640 x 360 to 2560 x 1440 
+<br>
+- **Generation settings**
+    - Rooms max size
+    - Props density : the amount of furniture in the room
+    - Doors density : the max amount of doors per room
+    - Windows density : the max amount of windows in the room
+<br>
+- **Camera settings**
+    - Camera max rotation : the max angle of the camera around x,y and z
+    - FOV : the diagonal Field Of View of the camera
+    - ISO 
+    - Aperture
+    - Focus Distance
+<br>
+- **Precision settings**
+    - Raycasts amount : the number of rays shot when calculating camera visibility
+
+#### Performances
+
+Most of these parameters (except from camera settings) have an impact on performances and will affect the duration of the process. The estimated remaining time is displayed on the bottom left corner of the screen. 
+
+#### Presets
+
+When applying new settings, a preset file is created and can then be selected to retrieve the same configuration. They can be found in the Ressource folder of the app if the user need to share or delete one. 
 
 ## Generated data
 
@@ -82,6 +116,6 @@ Each screenshot is matched with a Json containing info about the room, the seeds
 
 ## Open source
 
-ISGT is fully open-source, you can fork this repository and start helping us improve the tool. To work on this project, you will need Unity version 2022.3.26f1 or higher.  <br>
+ISGT is fully open-source, you can fork the GitHub repository and start helping us improve the tool.
 
-A more detailed documentation is on the way. 
+You can find the complete technical documentation [here](doc_menu.md).
