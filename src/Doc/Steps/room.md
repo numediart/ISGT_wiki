@@ -10,24 +10,26 @@ The room generation algorithm has several parameters that can be adjusted to cha
 - **Height**: The height of the room in cells. default value is 2.5 meters.
 - **Max room size**: The maximum size of the room in cells. default value is room 40x40 cells.
 
-## Room generation example
-The following example shows how to generate a room with the default parameters:
+## Openings placement
 
-```Csharp
-using ClassicRoom;
-using UnityEngine;
-
-public class RoomGenerationExample : MonoBehaviour
-{
-   
-    [SerializeField] private RoomGenerationData roomGenerationData;
-    void Start()
-    {
-        ClassicRoom room = gameObject.AddComponent<ClassicRoom>();
-
-        room.InitRoom(roomGenerationData);//generate room with defined parameters
-    }
-}
-```
+Openings are the doors and windows. To create one, you need to attach to the prefab a box collider and the ```Openings.cs``` script. This script will allow you to set the opening type (door or window) and the mean of opening (translation or rotation). You'll also need to link the opening's moving part, the center transform and the structure. 
 
 
+<p align="center">
+  <img src="../../Img/Window component.png" alt="Opening game object's components">
+  <br>
+  <em>Figure: Opening game object's components example </em>
+</p>
+
+Once the room layout is complete, exterior walls are procedurally replaced by walls containing doors and windows, to match the opening amount set by the user. These walls already contains windows, but doors are placed after the wall so the color can be chosen randomly.
+
+To create a wall prefab, you can modify the base wall that has no openings and dig holes of the right size using the ProBuilder tool. You can then add either the windows to the prefab, or a door spawner with the ```WallDoor.cs``` script. 
+
+These walls can then be added to the lists in the ```RoomGenerationData.asset``` scriptable object, located in ```Assets/Data``` so that they can be picked by the generation algorithm.
+
+## Textures
+
+After the walls and openings placement, textures are applied to each side of the room, to the floor, to the ceiling and to window frames.
+ The textures are chosen from the 4 lists of textures in the ```RoomGenerationData.asset``` scriptable object, located in ```Assets/Data```.
+
+To allow new textures to be used, you can create Unity's materials and add them to one of the lists. The materials must be set to the Standard shader and have a texture in the Albedo slot.
