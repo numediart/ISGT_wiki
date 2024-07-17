@@ -114,8 +114,8 @@ Each screenshot is matched with a Json containing info about the room, the seeds
 }
 ```
 
-## Open source
+## Work on ISGT
 
-ISGT is fully open-source, you can fork the GitHub repository and start helping us improve the tool.
+You can fork the [GitHub repository](https://github.com/numediart/ISGT) and start helping us improve the tool.
 
-You can find the complete technical documentation [here](./Doc/doc-menu.md).
+You can find the technical documentation [here](./Doc/doc-menu.md).

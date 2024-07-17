@@ -1,6 +1,6 @@
 # Props placement
 
-### Quad tree
+## Quad tree
 
 The props are placed in the room using a quad tree : the space is divided into four equal nodes, which represent rectangles in the room. The props are placed one by one randomly in one of the biggest empty nodes, namely the empty nodes with the lowest depth. The node chosen is then divided into four nodes once again. The process is repeated until all the props are placed inside the room. This ensures that the props have the highest chance of being placed without overlapping with other props, thus limiting the number of tries needed to place them.
 
@@ -10,7 +10,7 @@ The props are placed in the room using a quad tree : the space is divided into f
   <em>Figure: 3 steps of the quad tree division process for prop placement.</em>
 </p>
 
-### Optimal nodes
+## Optimal nodes
 
 For certain types of furnitures, the node choice is not fully random and follow some rules. This allows to place the furniture in a more realistic way. Thus, to generate other kind of rooms, you would have to add new types of furniture and new sets of rules. 
 
@@ -20,7 +20,7 @@ Cuurently there are 2 main rules :
 
 They are implemented in the ```QuadTreeNode.cs``` script.
 
-### "Spawner" props
+## Spawner props
 
 Some props place other props around them when they are instantiated. This helps having a coherent placement, while still having a random aspect. The props instancianting other props are the following :
 
@@ -28,7 +28,7 @@ Some props place other props around them when they are instantiated. This helps 
 - **Tables** : They place a random amount of chairs around them, and make them face the table.
 - **Desk** : They place a random armchair in front of them.
 
-### Add a prop
+## Add a prop
 
 To create a new prop prefab, the game object needs some mandatory components :
 - **A mesh** : The visual representation of the prop.

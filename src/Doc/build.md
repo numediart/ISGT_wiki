@@ -11,4 +11,4 @@ Then, you can build the project by going to `File > Build Settings` and selectin
 Windows is the only build target that has been tested, but building for other platforms should work as well using the correct [Unity plugins](https://docs.unity3d.com/560/Documentation/Manual/PluginsForDesktop.html).
 
 
-> :warning: The .exe will not work if not associated with the other files created by Unity. 
+> Note that the .exe will not work if not associated with the other files created by Unity. 
