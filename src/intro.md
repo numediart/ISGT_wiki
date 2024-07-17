@@ -47,12 +47,6 @@ When applying new settings, a preset file is created and can then be selected to
 Each screenshot is matched with a Json containing info about the room, the seeds, the camera settings and about each opening in the image, namely doors and windows. Here is an example : 
 ```js
 {
-  "SeedsData": {
-    "DatabaseSeed": 522732214,
-    "RoomsSeed": -320021519,
-    "OpeningsSeed": 723920686,
-    "ObjectsSeed": 1119647337
-  },
   "CameraData": {
     "FieldOfView": 52.2338448,
     "NearClipPlane": 0.3,

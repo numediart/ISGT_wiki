@@ -139,16 +139,10 @@ The visibility ratio is the ratio of the visibility bounding box area over the f
 
 ## Save data
 
-The screenshot is then saved, along with a matching JSON file containing the collected data about openings, the seed and the camera information. The JSON file is structured as follows:
+The screenshot is then saved, along with a matching JSON file containing the collected data about each visible openings and the camera information. The JSON file is structured as follows:
 
 ```json
 {
-  "SeedsData": {
-    "DatabaseSeed": 522732214,
-    "RoomsSeed": -320021519,
-    "OpeningsSeed": 723920686,
-    "ObjectsSeed": 1119647337
-  },
   "CameraData": {
     "FieldOfView": 52.2338448,
     "NearClipPlane": 0.3,
@@ -211,3 +205,4 @@ The screenshot is then saved, along with a matching JSON file containing the col
 ```
 
 A JSON is also created for each room, containing the seeds, the room's dimensions, the generation's time and the placement data. 
+The seeds can be used to reproduce random generation. 

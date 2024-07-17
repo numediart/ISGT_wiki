@@ -1,6 +1,6 @@
 # Summary
 
-[Introduction](./intro.md)
+[User guide](./intro.md)
 
 # Technical documentation
 
@@ -12,6 +12,6 @@
         - [Props placement](./Doc/./Steps/props.md)
         - [Data recovery](./Doc/./Steps/db.md)
 
-# Testing
+- [Testing](./Testing/testing.md)
 
-# Roadmap
+- [Roadmap](./Roadmap/roadmap.md)
