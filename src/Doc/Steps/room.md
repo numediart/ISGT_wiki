@@ -1,7 +1,8 @@
 # Room generation
 
-## Room generation
-The room generation is the first step of the generation process. It is the step where the room structure is created. The room is composed of a grid of cells. Each cell has 4 walls (North, East, South, West), a floor and ceiling. The algorithm starts by creating a grid of cells. It then chooses a random cell as the current cell and marks it as visited. The algorithm then chooses a random unvisited neighbor of the current cell and moves to it. The algorithm repeats this process until it reaches a cell that has no unvisited neighbors. When this happens, the algorithm backtracks to the previous cell and repeats the process until all cells have been visited. The result is an empty room with walls, floor and ceiling.
+## Recursion backtracking algorithm also known as the depth-first search algorithm
+The room generation algorithm is based on the recursion backtracking algorithm also known as the depth-first search algorithm. The algorithm is used to generate a room with a grid of cells. The algorithm starts by creating a grid of cells. It then chooses a random cell as the current cell and marks it as visited. The algorithm then chooses a random unvisited neighbor of the current cell and moves to it. The algorithm repeats this process until it reaches a cell that has no unvisited neighbors. When this happens, the algorithm backtracks to the previous cell and repeats the process until all cells have been visited. The result is an empty room with walls, floor and ceiling. The next sub-steps will replace some walls with doors and windows.
+
 
 ## Room generation parameters
 The room generation algorithm has several parameters that can be adjusted to change the room structure. The parameters are as follows:
