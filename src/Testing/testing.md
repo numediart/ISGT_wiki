@@ -132,5 +132,37 @@ We then manually checked the accuracy of the bounding boxes by comparing the ann
 On the 800 images, we detected 22 incorect bounding boxes, which is a 97.25% success rate. The failures were caused by incorrect colliders on some props, resulting in hiding openings from the camera but not from our eyes. All colliders were then fixed and the test was rerun with a 100% success rate.
 
 
-## Benchmarking
+## Benchmark
+
+To test the performance of the software, we ran a benchmark of 100 iterations of 10 rooms generation, with 50 screenshots taken in each room. That adds up to 50 000 screenshots generated in total. We then measured the time taken to generate the screenshots and the memory used by the software.
+
+We used to following parameters : 
+- Resolution : Full HD
+- Room size : Medium
+- Props density : Medium
+- Doors density : Medium
+- Windows density : Medium
+- Raycast : Medium
+
+The computer used for the test had the following specifications :
+- System : Windows 11 version ``10.0.22631``
+- Machine : AMD64
+- Processor : 12th Gen Intel(R) Core(TM) i7-12650H
+- Physical Cores : 10 
+- Total Cores : 16
+- Max Frequency : 2.30 GHz
+- GPU 0 : Intel(R) UHD Graphics 
+- GPU 1 : NVIDIA GeForce RTX 4070 Laptop GPU
+- Total RAM : 31 GB
+- RAM Type : DDR4
+
+The process took 2 hours and 45 minutes, here are the details : 
+
+<p align="center">
+  <img src="../Img/total_gen_time.png" alt="Total Time Histogram">
+  <img src="../Img/average_gen_time.png" alt="Average Time Histogram">
+</p>
+
+
+
 
