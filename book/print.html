@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">User guide</a></li><li class="chapter-item expanded "><a href="Doc/doc-menu.html"><strong aria-hidden="true">1.</strong> Technical documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Doc/environment.html"><strong aria-hidden="true">1.1.</strong> Environment</a></li><li class="chapter-item expanded "><a href="Doc/build.html"><strong aria-hidden="true">1.2.</strong> Build</a></li><li class="chapter-item expanded "><a href="Doc/./Steps/steps_menu.html"><strong aria-hidden="true">1.3.</strong> Generation steps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Doc/./Steps/room.html"><strong aria-hidden="true">1.3.1.</strong> Room generation</a></li><li class="chapter-item expanded "><a href="Doc/./Steps/props.html"><strong aria-hidden="true">1.3.2.</strong> Props placement</a></li><li class="chapter-item expanded "><a href="Doc/./Steps/db.html"><strong aria-hidden="true">1.3.3.</strong> Data recovery</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="Testing/testing.html"><strong aria-hidden="true">2.</strong> Testing</a></li><li class="chapter-item expanded "><a href="Roadmap/roadmap.html"><strong aria-hidden="true">3.</strong> Roadmap</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -148,6 +148,9 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+                        <a href="https://github.com/numediart/ISGT" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
 
                     </div>
                 </div>
@@ -174,7 +177,445 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
+                        <h1 id="indoor-scene-generator-toolkit"><a class="header" href="#indoor-scene-generator-toolkit">Indoor Scene Generator Toolkit</a></h1>
+<p>ISGT is a Unity project aimed at generating realistic virtual rooms. They are then used to create datasets filled with screenshots and the information about each window or door in the image. These datasets can be used to train image recognition AIs.</p>
+<h2 id="how-to-use"><a class="header" href="#how-to-use">How to use</a></h2>
+<p>To use the software, you only need to download the <a href="https://github.com/numediart/ISGT/releases">latest realease</a>, unzip it and start ISGT.exe.</p>
+<p>You can change the settings and the output folder via the menu, and then start the process. It can be stopped at any point by pressing escape.</p>
+<p>By default, screenshots and JSONs are saved at /ISGT_Data/Export/.</p>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
+<p>The process is fully parametrable thanks to the following settings :</p>
+<ul>
+<li><strong>General settings</strong>
+<ul>
+<li>Number of room</li>
+<li>Screenshots per room</li>
+<li>Image resolution : the size of the screenshots, from 640 x 360 to 2560 x 1440
+<br></li>
+</ul>
+</li>
+<li><strong>Generation settings</strong>
+<ul>
+<li>Rooms max size</li>
+<li>Props density : the amount of furniture in the room</li>
+<li>Doors density : the max amount of doors per room</li>
+<li>Windows density : the max amount of windows in the room
+<br></li>
+</ul>
+</li>
+<li><strong>Camera settings</strong>
+<ul>
+<li>Camera max rotation : the max angle of the camera around x,y and z</li>
+<li>FOV : the diagonal Field Of View of the camera</li>
+<li>ISO</li>
+<li>Aperture</li>
+<li>Focus Distance
+<br></li>
+</ul>
+</li>
+<li><strong>Precision settings</strong>
+<ul>
+<li>Raycasts amount : the number of rays shot when calculating camera visibility</li>
+</ul>
+</li>
+</ul>
+<h4 id="performances"><a class="header" href="#performances">Performances</a></h4>
+<p>Most of these parameters (except from camera settings) have an impact on performances and will affect the duration of the process. The estimated remaining time is displayed on the bottom left corner of the screen.</p>
+<h4 id="presets"><a class="header" href="#presets">Presets</a></h4>
+<p>When applying new settings, a preset file is created and can then be selected to retrieve the same configuration. They can be found in the Ressource folder of the app if the user need to share or delete one.</p>
+<h2 id="generated-data"><a class="header" href="#generated-data">Generated data</a></h2>
+<p>Each screenshot is matched with a Json containing info about the room, the seeds, the camera settings and about each opening in the image, namely doors and windows. Here is an example :</p>
+<pre><code class="language-js">{
+  "CameraData": {
+    "FieldOfView": 52.2338448,
+    "NearClipPlane": 0.3,
+    "FarClipPlane": 1000.0,
+    "ViewportRectX": 0.0,
+    "ViewportRectY": 0.0,
+    "ViewportRectWidth": 1920,
+    "ViewportRectHeight": 1080,
+    "Depth": -1.0,
+    "IsOrthographic": false
+  },
+  "ScreenshotData": {
+    "OpeningsData": [
+      {
+        "Type": "Window",
+        "Dimensions": {
+          "Height": 1.603815,
+          "Width": 1.13412368,
+          "Thickness": 0.10204263
+        },
+        "DistanceToCamera": 7.12805271,
+        "RotationQuaternionFromCamera": {
+          "w": 0.457306623,
+          "x": -0.004237673,
+          "y": 0.8892608,
+          "z": 0.008240416
+        },
+        "OpenessDegree": 0.6515185,
+        "VisibilityRatio": 0.9289916,
+        "BoundingBox": {
+          "Origin": [
+            1118,
+            454
+          ],
+          "Dimension": [
+            118,
+            205
+          ]
+        },
+        "VisibilityBoundingBox": {
+          "Origin": [
+            1120,
+            458
+          ],
+          "Dimension": [
+            116,
+            200
+          ]
+        }
+      },
+    ],
+    "CameraRotation": {
+      "w": 0.5645235,
+      "x": 0.0,
+      "y": 0.825417,
+      "z": 0.0
+    }
+  }
+}
+</code></pre>
+<h2 id="work-on-isgt"><a class="header" href="#work-on-isgt">Work on ISGT</a></h2>
+<p>You can fork the <a href="https://github.com/numediart/ISGT">GitHub repository</a> and start helping us improve the tool.</p>
+<p>You can find the technical documentation <a href="./Doc/doc-menu.html">here</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="documentation"><a class="header" href="#documentation">Documentation</a></h1>
+<p>This section will address all the different technical aspects of the project, so that others can take on the development. You can learn about:</p>
+<ul>
+<li><a href="Doc/environment.html">The environment</a></li>
+<li><a href="Doc/build.html">How to build and deploy</a></li>
+<li><a href="Doc/./Steps/steps_menu.html">The steps of generation</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="environment"><a class="header" href="#environment">Environment</a></h1>
+<h2 id="unity"><a class="header" href="#unity">Unity</a></h2>
+<p>ISGT was developed using Unity <code>2022.3.26f1</code> on Windows but can be edited with higher versions of Unity and any OS.</p>
+<h2 id="plugins"><a class="header" href="#plugins">Plugins</a></h2>
+<p>All plugins used in this project are official plugins developed and maintained by Unity Technologies. They will be automatically installed when running the project for the first time.</p>
+<p>You might need to install another plugin if using an IDE which is not Rider or Visual Studio and want full integration.</p>
+<p>Here are the list of all the plugins used in for the project :</p>
+<ul>
+<li>
+<p>2D Sprite <code>1.0.0</code> : create and manage sprites for UI</p>
+</li>
+<li>
+<p>JetBrains Rider Editor <code>3.0.28</code> : provides an integration for using Rider IDE</p>
+</li>
+<li>
+<p>Newtonsoft Json <code>3.2.1</code> : used for advanced json serialization and deserialization</p>
+</li>
+<li>
+<p>Post Processing <code>3.4.0</code> : collection of effects and image filters that can be applied to the cameras</p>
+</li>
+<li>
+<p>Pro Builder <code>5.2.2</code> : used to build, edit, and texture custom geometry</p>
+</li>
+<li>
+<p>Test Framework <code>1.1.33</code> : used to run Edit mode and Play mode tests in Unity</p>
+</li>
+<li>
+<p>Text Mesh Pro <code>3.0.6</code> : text solution</p>
+</li>
+<li>
+<p>Toolchain Win Linux x64 <code>2.0.9</code> : Cross-compilation toolchain to build player target Linux on host Windows</p>
+</li>
+<li>
+<p>Unity UI <code>1.0.0</code> : set of tools for developing user interfaces for games and applications</p>
+</li>
+<li>
+<p>Visual Studio Editor <code>2.0.22</code> :  integration for supporting Visual Studio as IDE.</p>
+</li>
+</ul>
+<h2 id="imports-"><a class="header" href="#imports-">Imports :</a></h2>
+<p>Every props are furnitures apart from doors and windows come from the <a href="https://github.com/allenai/ai2thor">AI2 Thor Project</a>.</p>
+<p>The doors meshs come from the <a href="https://assetstore.unity.com/packages/3d/props/interior/free-wood-door-pack-280509">Free Wood Doorpack</a> available in the unity asset store.</p>
+<p>The skybox comes from the <a href="https://assetstore.unity.com/packages/2d/textures-materials/sky/8k-skybox-pack-free-150926">8K sbybox pack</a> available in the unity asset store.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="build"><a class="header" href="#build">Build</a></h1>
+<p>To build the project and create an executable, you only need the Unity Editor. The only constraint is that the scenes need to be numbered correctly, like in the following image.</p>
+<p align="center">
+  <img src="Doc/../Img/BuildScenes.png" alt="Scenes">
+</p>
+<p>Then, you can build the project by going to <code>File &gt; Build Settings</code> and selecting the scenes in the correct order. You can then select the target platform and build the project.</p>
+<p>Windows is the only build target that has been tested, but building for other platforms should work as well using the correct <a href="https://docs.unity3d.com/560/Documentation/Manual/PluginsForDesktop.html">Unity plugins</a>.</p>
+<blockquote>
+<p>Note that the .exe will not work if not associated with the other files created by Unity.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="steps"><a class="header" href="#steps">Steps</a></h1>
+<p>There 3 big steps to generate synthetic data with <code>ISGT</code>:
+<img src="Doc/./Steps/../../Assets/ISGT_diagramme.jpg" alt="" /></p>
+<p>Find details in the following sections:</p>
+<ol>
+<li><a href="Doc/./Steps/room.html">Room generation</a></li>
+<li><a href="Doc/./Steps/props.html">Object generation</a></li>
+<li><a href="Doc/./Steps/db.html">Data generation</a></li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="room-generation"><a class="header" href="#room-generation">Room generation</a></h1>
+<h2 id="recursion-backtracking-algorithm-also-known-as-the-depth-first-search-algorithm"><a class="header" href="#recursion-backtracking-algorithm-also-known-as-the-depth-first-search-algorithm">Recursion backtracking algorithm also known as the depth-first search algorithm</a></h2>
+<p>The room generation algorithm is based on the recursion backtracking algorithm also known as the depth-first search algorithm. The algorithm is used to generate a room with a grid of cells. The algorithm starts by creating a grid of cells. It then chooses a random cell as the current cell and marks it as visited. The algorithm then chooses a random unvisited neighbor of the current cell and moves to it. The algorithm repeats this process until it reaches a cell that has no unvisited neighbors. When this happens, the algorithm backtracks to the previous cell and repeats the process until all cells have been visited. The result is an empty room with walls, floor and ceiling. The next sub-steps will replace some walls with doors and windows.</p>
+<h2 id="room-generation-parameters"><a class="header" href="#room-generation-parameters">Room generation parameters</a></h2>
+<p>The room generation algorithm has several parameters that can be adjusted to change the room structure. The parameters are as follows:</p>
+<ul>
+<li><strong>Width</strong>: The width of the room in cells. default value is 2.5 meters.</li>
+<li><strong>Height</strong>: The height of the room in cells. default value is 2.5 meters.</li>
+<li><strong>Max room size</strong>: The maximum size of the room in cells. default value is room 40x40 cells.</li>
+</ul>
+<h2 id="openings-placement"><a class="header" href="#openings-placement">Openings placement</a></h2>
+<p>Openings are the doors and windows. To create one, you need to attach to the prefab a box collider and the <code>Openings.cs</code> script. This script will allow you to set the opening type (door or window) and the mean of opening (translation or rotation). You’ll also need to link the opening’s moving part, the center transform and the structure.</p>
+<p align="center">
+  <img src="Doc/./Steps/../../Img/Window component.png" alt="Opening game object's components">
+  <br>
+  <em>Figure: Opening game object's components example </em>
+</p>
+<p>Once the room layout is complete, exterior walls are procedurally replaced by walls containing doors and windows, to match the opening amount set by the user. These walls already contains windows, but doors are placed after the wall so the color can be chosen randomly.</p>
+<p>To create a wall prefab, you can modify the base wall that has no openings and dig holes of the right size using the ProBuilder tool. You can then add either the windows to the prefab, or a door spawner with the <code>WallDoor.cs</code> script.</p>
+<p>These walls can then be added to the lists in the <code>RoomGenerationData.asset</code> scriptable object, located in <code>Assets/Data</code> so that they can be picked by the generation algorithm.</p>
+<h2 id="textures"><a class="header" href="#textures">Textures</a></h2>
+<p>After the walls and openings placement, textures are applied to each side of the room, to the floor, to the ceiling and to window frames.
+The textures are chosen from the 4 lists of textures in the <code>RoomGenerationData.asset</code> scriptable object, located in <code>Assets/Data</code>.</p>
+<p>To allow new textures to be used, you can create Unity’s materials and add them to one of the lists. The materials must be set to the Standard shader and have a texture in the Albedo slot.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="props-placement"><a class="header" href="#props-placement">Props placement</a></h1>
+<h2 id="quad-tree"><a class="header" href="#quad-tree">Quad tree</a></h2>
+<p>The props are placed in the room using a quad tree : the space is divided into four equal nodes, which represent rectangles in the room. The props are placed one by one randomly in one of the biggest empty nodes, namely the empty nodes with the lowest depth. The node chosen is then divided into four nodes once again. The process is repeated until all the props are placed inside the room. This ensures that the props have the highest chance of being placed without overlapping with other props, thus limiting the number of tries needed to place them.</p>
+<p align="center">
+  <img src="Doc/./Steps/../../Img/ISGT.jpg" alt="Quad tree steps">
+  <br>
+  <em>Figure: 3 steps of the quad tree division process for prop placement.</em>
+</p>
+<h2 id="optimal-nodes"><a class="header" href="#optimal-nodes">Optimal nodes</a></h2>
+<p>For certain types of furnitures, the node choice is not fully random and follow some rules. This allows to place the furniture in a more realistic way. Thus, to generate other kind of rooms, you would have to add new types of furniture and new sets of rules.</p>
+<p>Cuurently there are 2 main rules :</p>
+<ul>
+<li><strong>Beds</strong> : They are more likely to be placed in nodes close to the walls, and is aligned with the wall.</li>
+<li><strong>Fridges and sofa</strong> : They are more likely to be placed in nodes close to the walls, and oriented with their back against the wall.</li>
+</ul>
+<p>They are implemented in the <code>QuadTreeNode.cs</code> script.</p>
+<h2 id="spawner-props"><a class="header" href="#spawner-props">Spawner props</a></h2>
+<p>Some props place other props around them when they are instantiated. This helps having a coherent placement, while still having a random aspect. The props instancianting other props are the following :</p>
+<ul>
+<li><strong>TV stands</strong> : They place a random TV on top of them, with a small angle.</li>
+<li><strong>Tables</strong> : They place a random amount of chairs around them, and make them face the table.</li>
+<li><strong>Desk</strong> : They place a random armchair in front of them.</li>
+</ul>
+<h2 id="add-a-prop"><a class="header" href="#add-a-prop">Add a prop</a></h2>
+<p>To create a new prop prefab, the game object needs some mandatory components :</p>
+<ul>
+<li><strong>A mesh</strong> : The visual representation of the prop.</li>
+<li><strong>Accurate colliders</strong> : The colliders must be as close as possible to the mesh, to avoid overlapping with other props. They need to have <code>SimObjPhysics</code> as tag.</li>
+<li><strong>A box collider</strong> : It will be used to check which nodes are containing the prop, it doesn’t need to be accurate. However, it needs to be on the <code>Ignore Raycast</code> layer and to have the <code>BoundingBox</code> tag.</li>
+<li><strong><code>props.cs</code> script</strong> : You need to attach this script to the prop, link the prop’s perfab and the bounding box collider. You also need to set the prop’s type from a list.</li>
+<li><strong><code>PropsSpawner.cs</code> script (optional)</strong> : If the prop is a spawner, you need to attach this script to the prop. Then, link the list of prefabs to spawn, as well as the list of spawn points’ transforms, and indicate the type of the prop.</li>
+</ul>
+<div style="text-align: center;">
+  <img src="Doc/./Steps/../../Img/Prefab_component.png" alt="Prefab components example" style="width:45%; margin:10px; vertical-align: top;">
+  <img src="Doc/./Steps/../../Img/Prefab_tree.png" alt="Prefab tree example" style="width:30%; margin:10px; vertical-align: top;">
+  <br>
+  <em>Figure: Prefab components and tree example</em>
+</div>
+<br>
+<p>Once the prefab is created, it needs to be added in the props list of the <code>RoomGenerationData.asset</code> scriptable object, located in <code>Assets/Data</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="database-generation"><a class="header" href="#database-generation">Database Generation</a></h1>
+<p>After the room is generated, the data is collected in the <code>DatabaseGenerator.cs</code> script. Each steps will be detailed in the following sections.</p>
+<h2 id="camera-placement"><a class="header" href="#camera-placement">Camera placement</a></h2>
+<p>First, all the empty nodes are retrieved from the room’s quad tree. The camera is the placed randomly in one of them, and a random rotation is applied according to the settings. We then ensure that the camera is not placed too close to the walls, the ceiling or to props to avoid clipping issues. This is done by creating a collider sphere around it and checking for collisions.</p>
+<h2 id="save-camera-view"><a class="header" href="#save-camera-view">Save Camera view</a></h2>
+<p>Secondly, a screenshot is generated using this custom method in <code>CameraScreenshot.cs</code> which allow to save the camera view while ignoring the UI.</p>
+<pre><code class="language-Csharp">private IEnumerator Capture()
+        {
+            // Create a RenderTexture to save the camera view
+            RenderTexture rt = new RenderTexture(imageWidth, imageHeight, 24);
+            cameraToCapture.targetTexture = rt;
+
+            // Create a 2D texture to save the screenshot
+            Texture2D screenShot = new Texture2D(imageWidth, imageHeight, TextureFormat.RGB24, false);
+            cameraToCapture.Render();
+
+            // Activate the RenderTexture and read the pixels
+            RenderTexture.active = rt;
+            screenShot.ReadPixels(new Rect(0, 0, imageWidth, imageHeight), 0, 0);
+            screenShot.Apply();
+
+            // Reset the camera and RenderTexture
+            cameraToCapture.targetTexture = null;
+            RenderTexture.active = null;
+            Destroy(rt);
+
+            // Save the screenshot
+            byte[] bytes = screenShot.EncodeToPNG();
+            File.WriteAllBytes(savePath, bytes);
+            yield return null;
+        }
+</code></pre>
+<h2 id="data-collection"><a class="header" href="#data-collection">Data collection</a></h2>
+<p>Finally, the data about each openings in the image is collected :</p>
+<h4 id="distance"><a class="header" href="#distance">Distance</a></h4>
+<p>The distance from the camera is calculated by substrating the camera position from the opening position.</p>
+<h4 id="angle"><a class="header" href="#angle">Angle</a></h4>
+<p>The quaternion angle between the camera and the opening is calculated using the <code>Quaternion.LookRotation()</code> method.</p>
+<h4 id="dimensions"><a class="header" href="#dimensions">Dimensions</a></h4>
+<p>The dimensions of the opening are calculated by using the <code>Bounds.size</code> property of the opening’s collider.</p>
+<h4 id="bounding-boxes"><a class="header" href="#bounding-boxes">Bounding boxes</a></h4>
+<h5 id="full-bounding-box"><a class="header" href="#full-bounding-box">Full bounding box</a></h5>
+<p>The bounding box is the 2D rectangle that contains the opening. It is calculated by using the <code>Bounds.min</code> and <code>Bounds.max</code> properties of the opening’s collider in the <code>Openings.cs</code> script.</p>
+<h5 id="visibility-bounding-box"><a class="header" href="#visibility-bounding-box">Visibility bounding box</a></h5>
+<p>The visibility bounding box is the 2D rectangle that contains only the visible part of the opening. It is calculated by casting numerous rays from the camera to the opening and finding the intersection points. The bounding box is then calculated using the intersection points in the <code>Openings.cs</code> script.</p>
+<pre><code class="language-Csharp">public BoundingBox2D GetVisibilityBoundingBox()
+    {
+        gameObject.TryGetComponent&lt;BoxCollider&gt;(out BoxCollider openingBounds);
+        _width = RoomsGenerator.GetOpeningWidth(openingBounds.size);
+        _height = openingBounds.size.y;
+        int minX = Screen.width + 1;
+        int maxX = -1;
+        int minY = Screen.height + 1;
+        int maxY = -1;
+
+        float widthStep = _width / Mathf.Sqrt(NumberOfPoints);
+        float heightStep = _height / Mathf.Sqrt(NumberOfPoints);
+
+        for (float x = -_width / 2f + widthStep / 2; x &lt; _width / 2f; x += widthStep)
+        {
+            for (float y = -_height / 2f + heightStep / 2; y &lt;= _height / 2f; y += heightStep)
+            {
+                var thisTransform = transform;
+                Vector3 positionOffset = thisTransform.right * x + thisTransform.up * y;
+                Vector3 aimPoint = GetCenter() + positionOffset;
+                if (IsPointVisible(aimPoint) &amp;&amp; IsPointOnScreen(aimPoint))
+                {
+                    Vector3 screenPoint = _mainCamera.WorldToScreenPoint(aimPoint);
+                    minX = (int)Mathf.Min(minX, screenPoint.x);
+                    maxX = (int)Mathf.Max(maxX, screenPoint.x);
+                    minY = (int)Mathf.Min(minY, screenPoint.y);
+                    maxY = (int)Mathf.Max(maxY, screenPoint.y);
+                }
+            }
+        }
+        // 640 * 360 is the minimum resolution
+        int screenShotWidth = 640 * MainMenuController.PresetData.Resolution;
+        int screenShotHeight = 360 * MainMenuController.PresetData.Resolution;
+        
+        // Scale coordinates to screenshot size
+        minX = (int)(minX * screenShotWidth / Screen.width);
+        maxX = (int)(maxX * screenShotWidth / Screen.width);
+        minY = (int)(minY * screenShotHeight / Screen.height);
+        maxY = (int)(maxY * screenShotHeight / Screen.height);
+
+
+        return new BoundingBox2D(new Vector2Int(minX, minY), maxX - minX, maxY - minY);
+    }
+
+    private bool IsPointVisible(Vector3 aimPoint)
+    {
+        GameObject mainCamera = _mainCamera!.gameObject;
+        Vector3 aimPointDirection = aimPoint - mainCamera.transform.position;
+
+        if (Physics.Raycast(mainCamera.transform.position, aimPointDirection, out var hit, float.MaxValue))
+        {
+            if (hit.collider.gameObject == gameObject || hit.collider.gameObject.transform.parent == transform)
+                return true;
+        }
+
+        return false;
+    }
+    
+    // Check if a point is on the screen, i.e. in the camera's view frustum
+    private bool IsPointOnScreen(Vector3 point)
+    {
+        Vector3 screenPoint = _mainCamera!.WorldToViewportPoint(point);
+        return screenPoint.x is &gt; 0 and &lt; 1 &amp;&amp; screenPoint.y is &gt; 0 and &lt; 1 &amp;&amp; screenPoint.z &gt; 0;
+    }
+</code></pre>
+<h4 id="visibility-ratio"><a class="header" href="#visibility-ratio">Visibility ratio</a></h4>
+<p>The visibility ratio is the ratio of the visibility bounding box area over the full bounding box area. The data is only kept if the visibility ratio is different from 0, to avoid collecting data from openings that are not visible in the image.</p>
+<h2 id="save-data"><a class="header" href="#save-data">Save data</a></h2>
+<p>The screenshot is then saved, along with a matching JSON file containing the collected data about each visible openings and the camera information. The JSON file is structured as follows:</p>
+<pre><code class="language-json">{
+  "CameraData": {
+    "FieldOfView": 52.2338448,
+    "NearClipPlane": 0.3,
+    "FarClipPlane": 1000.0,
+    "ViewportRectX": 0.0,
+    "ViewportRectY": 0.0,
+    "ViewportRectWidth": 1920,
+    "ViewportRectHeight": 1080,
+    "Depth": -1.0,
+    "IsOrthographic": false
+  },
+  "ScreenshotData": {
+    "OpeningsData": [
+      {
+        "Type": "Window",
+        "Dimensions": {
+          "Height": 1.603815,
+          "Width": 1.13412368,
+          "Thickness": 0.10204263
+        },
+        "DistanceToCamera": 7.12805271,
+        "RotationQuaternionFromCamera": {
+          "w": 0.457306623,
+          "x": -0.004237673,
+          "y": 0.8892608,
+          "z": 0.008240416
+        },
+        "OpenessDegree": 0.6515185,
+        "VisibilityRatio": 0.9289916,
+        "BoundingBox": {
+          "Origin": [
+            1118,
+            454
+          ],
+          "Dimension": [
+            118,
+            205
+          ]
+        },
+        "VisibilityBoundingBox": {
+          "Origin": [
+            1120,
+            458
+          ],
+          "Dimension": [
+            116,
+            200
+          ]
+        }
+      },
+    ],
+    "CameraRotation": {
+      "w": 0.5645235,
+      "x": 0.0,
+      "y": 0.825417,
+      "z": 0.0
+    }
+  }
+}
+</code></pre>
+<p>A JSON is also created for each room, containing the seeds, the room’s dimensions, the generation’s time and the placement data.
+The seeds can be used to reproduce random generation.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="testing"><a class="header" href="#testing">Testing</a></h1>
+<p>test
+test</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="roadmap"><a class="header" href="#roadmap">Roadmap</a></h1>
+<p>ISTG is still in development, here are some ideas for future improvements :</p>
+<h3 id="better-props-placement"><a class="header" href="#better-props-placement">Better props placement</a></h3>
+<p>The props placement is currently done using a quad tree, which is a fast way to avoid overlapping. However, the placement could be improved by adding more rules for certain types of props. But having to write specific rules for each type of prop can be tedious. A better way would be to use an AI model to predict the best placement for each prop.</p>
+<h3 id="different-room-types"><a class="header" href="#different-room-types">Different room types</a></h3>
+<p>Currently, the room is generated with a single type of room in mind, which is a common living room. Adding more types of rooms, such as bedrooms, kitchens, or even offices or shed would be a great improvement. This would require adding new types of furniture, of textures and new rules for the props placement.</p>
+<p>Other shapes of room than rectangles could also be generated, such as L-shaped rooms, or rooms with multiple floors.</p>
+<h3 id="improved-visual-quality"><a class="header" href="#improved-visual-quality">Improved visual quality</a></h3>
+<p>To ensure that the model trained with the data behaves well in real life, the quality of the images must be as realistic as possible. This can be achieved by adding more detailed textures, more complexe props and to implement shaders to improve the lighting.</p>
+<p>It would also be interesting to add post-processing effects to the camera to make the images more realistic.</p>
+<p>Generating the rooms next to each other would also help by allowing to see other rooms through the windows, instead of just the skybox.</p>
+<h3 id="other-objects-detection"><a class="header" href="#other-objects-detection">Other objects detection</a></h3>
+<p>Currently, the software only generates data about doors and windows because its initial purpose was to train an AI for a drone to detect these objects. However, the software could be used to generate data about other objects, such as furniture, plants, or even people. This would require adding new types of props, new rules for their placement and new types of textures.</p>
+<p>The visibility detection algorithm would also need to be improved to work with more complexe shapes.</p>
 
                     </main>
 
@@ -193,6 +634,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

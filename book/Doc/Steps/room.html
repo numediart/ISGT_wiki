@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>User guide - ISGT Wiki</title>
+        <title>Room generation - ISGT Wiki</title>
 
 
         <!-- Custom HTML head -->
@@ -12,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -35,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html" class="active">User guide</a></li><li class="chapter-item expanded "><a href="Doc/doc-menu.html"><strong aria-hidden="true">1.</strong> Technical documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Doc/environment.html"><strong aria-hidden="true">1.1.</strong> Environment</a></li><li class="chapter-item expanded "><a href="Doc/build.html"><strong aria-hidden="true">1.2.</strong> Build</a></li><li class="chapter-item expanded "><a href="Doc/./Steps/steps_menu.html"><strong aria-hidden="true">1.3.</strong> Generation steps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Doc/./Steps/room.html"><strong aria-hidden="true">1.3.1.</strong> Room generation</a></li><li class="chapter-item expanded "><a href="Doc/./Steps/props.html"><strong aria-hidden="true">1.3.2.</strong> Props placement</a></li><li class="chapter-item expanded "><a href="Doc/./Steps/db.html"><strong aria-hidden="true">1.3.3.</strong> Data recovery</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="Testing/testing.html"><strong aria-hidden="true">2.</strong> Testing</a></li><li class="chapter-item expanded "><a href="Roadmap/roadmap.html"><strong aria-hidden="true">3.</strong> Roadmap</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../intro.html">User guide</a></li><li class="chapter-item expanded "><a href="../../Doc/doc-menu.html"><strong aria-hidden="true">1.</strong> Technical documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Doc/environment.html"><strong aria-hidden="true">1.1.</strong> Environment</a></li><li class="chapter-item expanded "><a href="../../Doc/build.html"><strong aria-hidden="true">1.2.</strong> Build</a></li><li class="chapter-item expanded "><a href="../../Doc/./Steps/steps_menu.html"><strong aria-hidden="true">1.3.</strong> Generation steps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Doc/./Steps/room.html" class="active"><strong aria-hidden="true">1.3.1.</strong> Room generation</a></li><li class="chapter-item expanded "><a href="../../Doc/./Steps/props.html"><strong aria-hidden="true">1.3.2.</strong> Props placement</a></li><li class="chapter-item expanded "><a href="../../Doc/./Steps/db.html"><strong aria-hidden="true">1.3.3.</strong> Data recovery</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../Testing/testing.html"><strong aria-hidden="true">2.</strong> Testing</a></li><li class="chapter-item expanded "><a href="../../Roadmap/roadmap.html"><strong aria-hidden="true">3.</strong> Roadmap</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -144,7 +144,7 @@
                     <h1 class="menu-title">ISGT Wiki</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/numediart/ISGT" title="Git repository" aria-label="Git repository">
@@ -176,125 +176,40 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="indoor-scene-generator-toolkit"><a class="header" href="#indoor-scene-generator-toolkit">Indoor Scene Generator Toolkit</a></h1>
-<p>ISGT is a Unity project aimed at generating realistic virtual rooms. They are then used to create datasets filled with screenshots and the information about each window or door in the image. These datasets can be used to train image recognition AIs.</p>
-<h2 id="how-to-use"><a class="header" href="#how-to-use">How to use</a></h2>
-<p>To use the software, you only need to download the <a href="https://github.com/numediart/ISGT/releases">latest realease</a>, unzip it and start ISGT.exe.</p>
-<p>You can change the settings and the output folder via the menu, and then start the process. It can be stopped at any point by pressing escape.</p>
-<p>By default, screenshots and JSONs are saved at /ISGT_Data/Export/.</p>
-<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
-<p>The process is fully parametrable thanks to the following settings :</p>
+                        <h1 id="room-generation"><a class="header" href="#room-generation">Room generation</a></h1>
+<h2 id="recursion-backtracking-algorithm-also-known-as-the-depth-first-search-algorithm"><a class="header" href="#recursion-backtracking-algorithm-also-known-as-the-depth-first-search-algorithm">Recursion backtracking algorithm also known as the depth-first search algorithm</a></h2>
+<p>The room generation algorithm is based on the recursion backtracking algorithm also known as the depth-first search algorithm. The algorithm is used to generate a room with a grid of cells. The algorithm starts by creating a grid of cells. It then chooses a random cell as the current cell and marks it as visited. The algorithm then chooses a random unvisited neighbor of the current cell and moves to it. The algorithm repeats this process until it reaches a cell that has no unvisited neighbors. When this happens, the algorithm backtracks to the previous cell and repeats the process until all cells have been visited. The result is an empty room with walls, floor and ceiling. The next sub-steps will replace some walls with doors and windows.</p>
+<h2 id="room-generation-parameters"><a class="header" href="#room-generation-parameters">Room generation parameters</a></h2>
+<p>The room generation algorithm has several parameters that can be adjusted to change the room structure. The parameters are as follows:</p>
 <ul>
-<li><strong>General settings</strong>
-<ul>
-<li>Number of room</li>
-<li>Screenshots per room</li>
-<li>Image resolution : the size of the screenshots, from 640 x 360 to 2560 x 1440
-<br></li>
+<li><strong>Width</strong>: The width of the room in cells. default value is 2.5 meters.</li>
+<li><strong>Height</strong>: The height of the room in cells. default value is 2.5 meters.</li>
+<li><strong>Max room size</strong>: The maximum size of the room in cells. default value is room 40x40 cells.</li>
 </ul>
-</li>
-<li><strong>Generation settings</strong>
-<ul>
-<li>Rooms max size</li>
-<li>Props density : the amount of furniture in the room</li>
-<li>Doors density : the max amount of doors per room</li>
-<li>Windows density : the max amount of windows in the room
-<br></li>
-</ul>
-</li>
-<li><strong>Camera settings</strong>
-<ul>
-<li>Camera max rotation : the max angle of the camera around x,y and z</li>
-<li>FOV : the diagonal Field Of View of the camera</li>
-<li>ISO</li>
-<li>Aperture</li>
-<li>Focus Distance
-<br></li>
-</ul>
-</li>
-<li><strong>Precision settings</strong>
-<ul>
-<li>Raycasts amount : the number of rays shot when calculating camera visibility</li>
-</ul>
-</li>
-</ul>
-<h4 id="performances"><a class="header" href="#performances">Performances</a></h4>
-<p>Most of these parameters (except from camera settings) have an impact on performances and will affect the duration of the process. The estimated remaining time is displayed on the bottom left corner of the screen.</p>
-<h4 id="presets"><a class="header" href="#presets">Presets</a></h4>
-<p>When applying new settings, a preset file is created and can then be selected to retrieve the same configuration. They can be found in the Ressource folder of the app if the user need to share or delete one.</p>
-<h2 id="generated-data"><a class="header" href="#generated-data">Generated data</a></h2>
-<p>Each screenshot is matched with a Json containing info about the room, the seeds, the camera settings and about each opening in the image, namely doors and windows. Here is an example :</p>
-<pre><code class="language-js">{
-  "CameraData": {
-    "FieldOfView": 52.2338448,
-    "NearClipPlane": 0.3,
-    "FarClipPlane": 1000.0,
-    "ViewportRectX": 0.0,
-    "ViewportRectY": 0.0,
-    "ViewportRectWidth": 1920,
-    "ViewportRectHeight": 1080,
-    "Depth": -1.0,
-    "IsOrthographic": false
-  },
-  "ScreenshotData": {
-    "OpeningsData": [
-      {
-        "Type": "Window",
-        "Dimensions": {
-          "Height": 1.603815,
-          "Width": 1.13412368,
-          "Thickness": 0.10204263
-        },
-        "DistanceToCamera": 7.12805271,
-        "RotationQuaternionFromCamera": {
-          "w": 0.457306623,
-          "x": -0.004237673,
-          "y": 0.8892608,
-          "z": 0.008240416
-        },
-        "OpenessDegree": 0.6515185,
-        "VisibilityRatio": 0.9289916,
-        "BoundingBox": {
-          "Origin": [
-            1118,
-            454
-          ],
-          "Dimension": [
-            118,
-            205
-          ]
-        },
-        "VisibilityBoundingBox": {
-          "Origin": [
-            1120,
-            458
-          ],
-          "Dimension": [
-            116,
-            200
-          ]
-        }
-      },
-    ],
-    "CameraRotation": {
-      "w": 0.5645235,
-      "x": 0.0,
-      "y": 0.825417,
-      "z": 0.0
-    }
-  }
-}
-</code></pre>
-<h2 id="work-on-isgt"><a class="header" href="#work-on-isgt">Work on ISGT</a></h2>
-<p>You can fork the <a href="https://github.com/numediart/ISGT">GitHub repository</a> and start helping us improve the tool.</p>
-<p>You can find the technical documentation <a href="./Doc/doc-menu.html">here</a>.</p>
+<h2 id="openings-placement"><a class="header" href="#openings-placement">Openings placement</a></h2>
+<p>Openings are the doors and windows. To create one, you need to attach to the prefab a box collider and the <code>Openings.cs</code> script. This script will allow you to set the opening type (door or window) and the mean of opening (translation or rotation). You’ll also need to link the opening’s moving part, the center transform and the structure.</p>
+<p align="center">
+  <img src="../../Img/Window component.png" alt="Opening game object's components">
+  <br>
+  <em>Figure: Opening game object's components example </em>
+</p>
+<p>Once the room layout is complete, exterior walls are procedurally replaced by walls containing doors and windows, to match the opening amount set by the user. These walls already contains windows, but doors are placed after the wall so the color can be chosen randomly.</p>
+<p>To create a wall prefab, you can modify the base wall that has no openings and dig holes of the right size using the ProBuilder tool. You can then add either the windows to the prefab, or a door spawner with the <code>WallDoor.cs</code> script.</p>
+<p>These walls can then be added to the lists in the <code>RoomGenerationData.asset</code> scriptable object, located in <code>Assets/Data</code> so that they can be picked by the generation algorithm.</p>
+<h2 id="textures"><a class="header" href="#textures">Textures</a></h2>
+<p>After the walls and openings placement, textures are applied to each side of the room, to the floor, to the ceiling and to window frames.
+The textures are chosen from the 4 lists of textures in the <code>RoomGenerationData.asset</code> scriptable object, located in <code>Assets/Data</code>.</p>
+<p>To allow new textures to be used, you can create Unity’s materials and add them to one of the lists. The materials must be set to the Standard shader and have a texture in the Albedo slot.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Doc/./Steps/steps_menu.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
-                            <a rel="next prefetch" href="Doc/doc-menu.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../Doc/./Steps/props.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -304,8 +219,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Doc/./Steps/steps_menu.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-                    <a rel="next prefetch" href="Doc/doc-menu.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../Doc/./Steps/props.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -336,13 +254,13 @@
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
 
         <!-- Custom JS scripts -->
 

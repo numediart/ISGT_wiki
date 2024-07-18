@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Data recovery - ISGT Wiki</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../intro.html">User guide</a></li><li class="chapter-item expanded "><a href="../../Doc/doc-menu.html"><strong aria-hidden="true">1.</strong> Technical documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Doc/environment.html"><strong aria-hidden="true">1.1.</strong> Environment</a></li><li class="chapter-item expanded "><a href="../../Doc/build.html"><strong aria-hidden="true">1.2.</strong> Build</a></li><li class="chapter-item expanded "><a href="../../Doc/./Steps/steps_menu.html"><strong aria-hidden="true">1.3.</strong> Generation steps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Doc/./Steps/room.html"><strong aria-hidden="true">1.3.1.</strong> Room generation</a></li><li class="chapter-item expanded "><a href="../../Doc/./Steps/props.html"><strong aria-hidden="true">1.3.2.</strong> Props placement</a></li><li class="chapter-item expanded "><a href="../../Doc/./Steps/db.html" class="active"><strong aria-hidden="true">1.3.3.</strong> Data recovery</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../Testing/testing.html"><strong aria-hidden="true">2.</strong> Testing</a></li><li class="chapter-item expanded "><a href="../../Roadmap/roadmap.html"><strong aria-hidden="true">3.</strong> Roadmap</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">ISGT Wiki</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/numediart/ISGT" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="database-generation"><a class="header" href="#database-generation">Database Generation</a></h1>
+<p>After the room is generated, the data is collected in the <code>DatabaseGenerator.cs</code> script. Each steps will be detailed in the following sections.</p>
+<h2 id="camera-placement"><a class="header" href="#camera-placement">Camera placement</a></h2>
+<p>First, all the empty nodes are retrieved from the room’s quad tree. The camera is the placed randomly in one of them, and a random rotation is applied according to the settings. We then ensure that the camera is not placed too close to the walls, the ceiling or to props to avoid clipping issues. This is done by creating a collider sphere around it and checking for collisions.</p>
+<h2 id="save-camera-view"><a class="header" href="#save-camera-view">Save Camera view</a></h2>
+<p>Secondly, a screenshot is generated using this custom method in <code>CameraScreenshot.cs</code> which allow to save the camera view while ignoring the UI.</p>
+<pre><code class="language-Csharp">private IEnumerator Capture()
+        {
+            // Create a RenderTexture to save the camera view
+            RenderTexture rt = new RenderTexture(imageWidth, imageHeight, 24);
+            cameraToCapture.targetTexture = rt;
+
+            // Create a 2D texture to save the screenshot
+            Texture2D screenShot = new Texture2D(imageWidth, imageHeight, TextureFormat.RGB24, false);
+            cameraToCapture.Render();
+
+            // Activate the RenderTexture and read the pixels
+            RenderTexture.active = rt;
+            screenShot.ReadPixels(new Rect(0, 0, imageWidth, imageHeight), 0, 0);
+            screenShot.Apply();
+
+            // Reset the camera and RenderTexture
+            cameraToCapture.targetTexture = null;
+            RenderTexture.active = null;
+            Destroy(rt);
+
+            // Save the screenshot
+            byte[] bytes = screenShot.EncodeToPNG();
+            File.WriteAllBytes(savePath, bytes);
+            yield return null;
+        }
+</code></pre>
+<h2 id="data-collection"><a class="header" href="#data-collection">Data collection</a></h2>
+<p>Finally, the data about each openings in the image is collected :</p>
+<h4 id="distance"><a class="header" href="#distance">Distance</a></h4>
+<p>The distance from the camera is calculated by substrating the camera position from the opening position.</p>
+<h4 id="angle"><a class="header" href="#angle">Angle</a></h4>
+<p>The quaternion angle between the camera and the opening is calculated using the <code>Quaternion.LookRotation()</code> method.</p>
+<h4 id="dimensions"><a class="header" href="#dimensions">Dimensions</a></h4>
+<p>The dimensions of the opening are calculated by using the <code>Bounds.size</code> property of the opening’s collider.</p>
+<h4 id="bounding-boxes"><a class="header" href="#bounding-boxes">Bounding boxes</a></h4>
+<h5 id="full-bounding-box"><a class="header" href="#full-bounding-box">Full bounding box</a></h5>
+<p>The bounding box is the 2D rectangle that contains the opening. It is calculated by using the <code>Bounds.min</code> and <code>Bounds.max</code> properties of the opening’s collider in the <code>Openings.cs</code> script.</p>
+<h5 id="visibility-bounding-box"><a class="header" href="#visibility-bounding-box">Visibility bounding box</a></h5>
+<p>The visibility bounding box is the 2D rectangle that contains only the visible part of the opening. It is calculated by casting numerous rays from the camera to the opening and finding the intersection points. The bounding box is then calculated using the intersection points in the <code>Openings.cs</code> script.</p>
+<pre><code class="language-Csharp">public BoundingBox2D GetVisibilityBoundingBox()
+    {
+        gameObject.TryGetComponent&lt;BoxCollider&gt;(out BoxCollider openingBounds);
+        _width = RoomsGenerator.GetOpeningWidth(openingBounds.size);
+        _height = openingBounds.size.y;
+        int minX = Screen.width + 1;
+        int maxX = -1;
+        int minY = Screen.height + 1;
+        int maxY = -1;
+
+        float widthStep = _width / Mathf.Sqrt(NumberOfPoints);
+        float heightStep = _height / Mathf.Sqrt(NumberOfPoints);
+
+        for (float x = -_width / 2f + widthStep / 2; x &lt; _width / 2f; x += widthStep)
+        {
+            for (float y = -_height / 2f + heightStep / 2; y &lt;= _height / 2f; y += heightStep)
+            {
+                var thisTransform = transform;
+                Vector3 positionOffset = thisTransform.right * x + thisTransform.up * y;
+                Vector3 aimPoint = GetCenter() + positionOffset;
+                if (IsPointVisible(aimPoint) &amp;&amp; IsPointOnScreen(aimPoint))
+                {
+                    Vector3 screenPoint = _mainCamera.WorldToScreenPoint(aimPoint);
+                    minX = (int)Mathf.Min(minX, screenPoint.x);
+                    maxX = (int)Mathf.Max(maxX, screenPoint.x);
+                    minY = (int)Mathf.Min(minY, screenPoint.y);
+                    maxY = (int)Mathf.Max(maxY, screenPoint.y);
+                }
+            }
+        }
+        // 640 * 360 is the minimum resolution
+        int screenShotWidth = 640 * MainMenuController.PresetData.Resolution;
+        int screenShotHeight = 360 * MainMenuController.PresetData.Resolution;
+        
+        // Scale coordinates to screenshot size
+        minX = (int)(minX * screenShotWidth / Screen.width);
+        maxX = (int)(maxX * screenShotWidth / Screen.width);
+        minY = (int)(minY * screenShotHeight / Screen.height);
+        maxY = (int)(maxY * screenShotHeight / Screen.height);
+
+
+        return new BoundingBox2D(new Vector2Int(minX, minY), maxX - minX, maxY - minY);
+    }
+
+    private bool IsPointVisible(Vector3 aimPoint)
+    {
+        GameObject mainCamera = _mainCamera!.gameObject;
+        Vector3 aimPointDirection = aimPoint - mainCamera.transform.position;
+
+        if (Physics.Raycast(mainCamera.transform.position, aimPointDirection, out var hit, float.MaxValue))
+        {
+            if (hit.collider.gameObject == gameObject || hit.collider.gameObject.transform.parent == transform)
+                return true;
+        }
+
+        return false;
+    }
+    
+    // Check if a point is on the screen, i.e. in the camera's view frustum
+    private bool IsPointOnScreen(Vector3 point)
+    {
+        Vector3 screenPoint = _mainCamera!.WorldToViewportPoint(point);
+        return screenPoint.x is &gt; 0 and &lt; 1 &amp;&amp; screenPoint.y is &gt; 0 and &lt; 1 &amp;&amp; screenPoint.z &gt; 0;
+    }
+</code></pre>
+<h4 id="visibility-ratio"><a class="header" href="#visibility-ratio">Visibility ratio</a></h4>
+<p>The visibility ratio is the ratio of the visibility bounding box area over the full bounding box area. The data is only kept if the visibility ratio is different from 0, to avoid collecting data from openings that are not visible in the image.</p>
+<h2 id="save-data"><a class="header" href="#save-data">Save data</a></h2>
+<p>The screenshot is then saved, along with a matching JSON file containing the collected data about each visible openings and the camera information. The JSON file is structured as follows:</p>
+<pre><code class="language-json">{
+  "CameraData": {
+    "FieldOfView": 52.2338448,
+    "NearClipPlane": 0.3,
+    "FarClipPlane": 1000.0,
+    "ViewportRectX": 0.0,
+    "ViewportRectY": 0.0,
+    "ViewportRectWidth": 1920,
+    "ViewportRectHeight": 1080,
+    "Depth": -1.0,
+    "IsOrthographic": false
+  },
+  "ScreenshotData": {
+    "OpeningsData": [
+      {
+        "Type": "Window",
+        "Dimensions": {
+          "Height": 1.603815,
+          "Width": 1.13412368,
+          "Thickness": 0.10204263
+        },
+        "DistanceToCamera": 7.12805271,
+        "RotationQuaternionFromCamera": {
+          "w": 0.457306623,
+          "x": -0.004237673,
+          "y": 0.8892608,
+          "z": 0.008240416
+        },
+        "OpenessDegree": 0.6515185,
+        "VisibilityRatio": 0.9289916,
+        "BoundingBox": {
+          "Origin": [
+            1118,
+            454
+          ],
+          "Dimension": [
+            118,
+            205
+          ]
+        },
+        "VisibilityBoundingBox": {
+          "Origin": [
+            1120,
+            458
+          ],
+          "Dimension": [
+            116,
+            200
+          ]
+        }
+      },
+    ],
+    "CameraRotation": {
+      "w": 0.5645235,
+      "x": 0.0,
+      "y": 0.825417,
+      "z": 0.0
+    }
+  }
+}
+</code></pre>
+<p>A JSON is also created for each room, containing the seeds, the room’s dimensions, the generation’s time and the placement data.
+The seeds can be used to reproduce random generation.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Doc/./Steps/props.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Testing/testing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Doc/./Steps/props.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Testing/testing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
